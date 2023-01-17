@@ -3,9 +3,25 @@ using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour {
 
-	void Update ()
+    private Control controlInput;
+
+    private void Awake()
+    {
+        controlInput = new Control();
+    }
+
+    private void OnEnable()
+    {
+        controlInput.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controlInput.Disable();
+    }
+    void Update ()
 	{
-		if (Input.GetButtonDown("Jump"))
+		if (controlInput.Player.Jump.triggered)
 		{
 			GameManager.instance.Restart();
 		}

@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 public class PlayerController : MonoBehaviour {
 
@@ -7,6 +9,22 @@ public class PlayerController : MonoBehaviour {
 
 	private float rotation;
 	private Rigidbody rb;
+	private Control controlInput;
+
+	private void Awake()
+	{
+		controlInput = new Control();
+	}
+
+	private void OnEnable()
+	{
+		controlInput.Enable();
+	}
+
+	private void OnDisable()
+	{
+		controlInput.Disable();
+	}
 
 	void Start ()
 	{
@@ -15,7 +33,7 @@ public class PlayerController : MonoBehaviour {
 
 	void Update ()
 	{
-		rotation = Input.GetAxisRaw("Horizontal");
+		rotation = controlInput.Player.Move.ReadValue<float>();
 	}
 
 	void FixedUpdate ()

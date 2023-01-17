@@ -6,17 +6,18 @@ public class GameManager : MonoBehaviour {
 	public static GameManager instance;
 
 	public GameObject gameOverUI;
-	public GameObject scoreUI;
 
 	void Awake ()
 	{
 		instance = this;
+		
+		// Limit FPS to minimum of 30
+		Application.targetFrameRate = 30;
 	}
 
 	public void EndGame ()
 	{
 		gameOverUI.SetActive(true);
-		scoreUI.SetActive(false);
 	}
 
 	public void Restart ()
